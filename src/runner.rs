@@ -10,7 +10,7 @@ use errors::handle_error;
 pub struct Runner {}
 
 impl Runner {
-    pub fn execute_commands(config: Config) -> io::Result<()> {
+    pub fn execute_commands(config: &Config) -> io::Result<()> {
         (0..config.directories.len())
             .into_par_iter()
             .for_each(|dir_index| {
@@ -22,7 +22,7 @@ impl Runner {
                     .output();
 
                 match command_output {
-                    Ok(output) => Self::print(output, working_dir.to_string_lossy()),
+                    Ok(output) => Self::print(&output, working_dir.to_string_lossy()),
                     Err(e) => {
                         handle_error(e, format!("{} is not a valid command", &config.command))
                     }
@@ -32,7 +32,7 @@ impl Runner {
         Ok(())
     }
 
-    fn print(command_output: Output, working_dir: Cow<str>) {
+    fn print(command_output: &Output, working_dir: Cow<str>) {
         let command_stdout = String::from_utf8_lossy(&command_output.stdout);
 
         let output: String = command_stdout

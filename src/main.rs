@@ -37,5 +37,5 @@ fn main() {
 
 fn run() -> io::Result<()> {
     let app = App::new();
-    Runner::execute_commands(app.config())
+    Runner::execute_commands(&app.config())
 }
