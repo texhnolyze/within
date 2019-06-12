@@ -46,7 +46,7 @@ impl<'a> App<'a> {
         ClapApp::new("within")
             .version("0.1.0")
             .author("texhnolyze <joegriepen@gmail.com>")
-            .about("Runs a command within list of directories")
+            .about("Runs a command within list of given directories")
             .arg(
                 Arg::with_name("directory")
                     .value_name("DIRECTORY")
@@ -54,16 +54,23 @@ impl<'a> App<'a> {
                     .required(true)
                     .multiple(true)
                     .index(1),
-            ).arg(
+            )
+            .arg(
                 Arg::with_name("command")
                     .value_name("COMMAND")
                     .help("COMMAND to execute in DIRECTORY")
                     .required(true)
                     .raw(true),
-            ).help_message("Print this help message.")
+            )
+            .help_message("Print this help message.")
             .version_message("Show version information.")
+            .after_help(
+                "EXAMPLES:\n    within ~/test1 ~/test2 -- ls\n    within ~/documents/* -- git add",
+            )
     }
 }
+
+
 
 fn into_path(path_string: &str) -> Option<PathBuf> {
     let path = PathBuf::from(path_string).canonicalize();
