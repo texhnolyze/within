@@ -5,8 +5,8 @@ use std::path::PathBuf;
 
 use errors::handle_error;
 
-pub struct App {
-    matches: ArgMatches<'static>,
+pub struct App<'a> {
+    matches: ArgMatches<'a>,
 }
 
 pub struct Config<'a> {
@@ -15,7 +15,7 @@ pub struct Config<'a> {
     pub directories: Vec<PathBuf>,
 }
 
-impl App {
+impl<'a> App<'a> {
     pub fn new() -> Self {
         App {
             matches: Self::matches(),
@@ -38,11 +38,11 @@ impl App {
         }
     }
 
-    fn matches() -> ArgMatches<'static> {
+    fn matches() -> ArgMatches<'a> {
         Self::build_app().get_matches()
     }
 
-    fn build_app() -> ClapApp<'static, 'static> {
+    fn build_app() -> ClapApp<'a, 'a> {
         ClapApp::new("within")
             .version("0.1.0")
             .author("texhnolyze <joegriepen@gmail.com>")
