@@ -3,7 +3,7 @@ use clap::{App as ClapApp, Arg, ArgMatches};
 
 use std::path::PathBuf;
 
-use errors::handle_error;
+use crate::errors::handle_error;
 
 pub struct App<'a> {
     matches: ArgMatches<'a>,

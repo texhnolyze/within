@@ -8,9 +8,9 @@ mod runner;
 use std::io;
 use std::process;
 
-use app::App;
-use errors::handle_error;
-use runner::Runner;
+use crate::app::App;
+use crate::errors::handle_error;
+use crate::runner::Runner;
 
 mod errors {
     use std::io::Error;

@@ -3,8 +3,8 @@ use rayon::prelude::*;
 use std::io;
 use std::process::{Command, Output, Stdio};
 
-use app::Config;
-use errors::handle_error;
+use crate::app::Config;
+use crate::errors::handle_error;
 
 pub struct Runner {}
 
