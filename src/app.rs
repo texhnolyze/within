@@ -1,5 +1,5 @@
 use ansi_term::Colour::Yellow;
-use clap::{App as ClapApp, Arg, ArgMatches};
+use clap::{crate_version, App as ClapApp, Arg, ArgMatches};
 
 use std::path::PathBuf;
 
@@ -44,7 +44,7 @@ impl<'a> App<'a> {
 
     fn build_app() -> ClapApp<'a, 'a> {
         ClapApp::new("within")
-            .version("0.1.0")
+            .version(crate_version!())
             .author("texhnolyze <joegriepen@gmail.com>")
             .about("Runs a command within list of given directories")
             .arg(
